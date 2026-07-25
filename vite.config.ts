@@ -8,8 +8,21 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
   tanstackStart: {
-    // Explicit entries so resolution works across runtimes (node/bun) on Cloudflare Pages.
-    router: { entry: "router.tsx" },
-    server: { entry: "server.ts" },
+    // Keep entry resolution deterministic in Linux CI/Cloudflare builds.
+    srcDirectory: "src",
+    router: { entry: "./router.tsx" },
+    server: { entry: "./server.ts" },
+  },
+  nitro: {
+    preset: "cloudflare-module",
+    output: {
+      dir: "dist",
+      serverDir: "dist/server",
+      publicDir: "dist/client",
+    },
+    cloudflare: {
+      nodeCompat: true,
+      deployConfig: true,
+    },
   },
 });

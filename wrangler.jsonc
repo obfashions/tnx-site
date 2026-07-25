@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tnx-sites",
+  "compatibility_date": "2025-05-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "dist/server/index.mjs",
+  "assets": {
+    "directory": "dist/client",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
